@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Bullet Journal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-open"></i> Mi Bullet Journal</h1>
+            <p>Organiza tu vida de manera creativa</p>
+        </header>
+
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="categories">
+                <i class="fas fa-list"></i> Categorías
+            </button>
+            <button class="tab-btn" data-tab="calendar">
+                <i class="fas fa-calendar-alt"></i> Calendario
+            </button>
+        </nav>
+
+        <!-- Sección de Categorías -->
+        <div id="categories" class="tab-content active">
+            <div class="section-header">
+                <h2>Mis Categorías</h2>
+                <button class="btn-primary" id="addCategoryBtn">
+                    <i class="fas fa-plus"></i> Nueva Categoría
+                </button>
+            </div>
+            <div id="categoriesContainer" class="categories-grid">
+                <!-- Las categorías se cargarán aquí dinámicamente -->
+            </div>
+        </div>
+
+        <!-- Sección de Calendario -->
+        <div id="calendar" class="tab-content">
+            <div class="calendar-header">
+                <button id="prevMonth" class="btn-secondary">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth" class="btn-secondary">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div id="calendarGrid" class="calendar-grid">
+                <!-- El calendario se generará aquí -->
+            </div>
+            <div id="eventsForDay" class="events-section">
+                <h3>Eventos del día</h3>
+                <div id="dayEvents"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar categoría -->
+    <div id="categoryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="categoryModalTitle">Nueva Categoría</h3>
+                <span class="close" id="closeCategoryModal">&times;</span>
+            </div>
+            <form id="categoryForm">
+                <div class="form-group">
+                    <label for="categoryName">Nombre de la categoría:</label>
+                    <input type="text" id="categoryName" required>
+                </div>
+                <div class="form-group">
+                    <label for="categoryIcon">Icono:</label>
+                    <select id="categoryIcon">
+                        <option value="fas fa-star">⭐ Estrella</option>
+                        <option value="fas fa-heart">❤️ Corazón</option>
+                        <option value="fas fa-briefcase">💼 Trabajo</option>
+                        <option value="fas fa-home">🏠 Casa</option>
+                        <option value="fas fa-graduation-cap">🎓 Estudios</option>
+                        <option value="fas fa-dumbbell">💪 Ejercicio</option>
+                        <option value="fas fa-book">📚 Lectura</option>
+                        <option value="fas fa-shopping-cart">🛒 Compras</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelCategory">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para agregar/editar tarea -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="taskModalTitle">Nueva Tarea</h3>
+                <span class="close" id="closeTaskModal">&times;</span>
+            </div>
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskName">Nombre de la tarea:</label>
+                    <input type="text" id="taskName" required>
+                </div>
+                <div class="form-group">
+                    <label for="taskDescription">Descripción:</label>
+                    <textarea id="taskDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="taskPriority">Prioridad:</label>
+                    <select id="taskPriority">
+                        <option value="low">Baja</option>
+                        <option value="medium">Media</option>
+                        <option value="high">Alta</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelTask">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para agregar evento al calendario -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="eventModalTitle">Nuevo Evento</h3>
+                <span class="close" id="closeEventModal">&times;</span>
+            </div>
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="eventTitle">Título del evento:</label>
+                    <input type="text" id="eventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">Descripción:</label>
+                    <textarea id="eventDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="eventTime">Hora:</label>
+                    <input type="time" id="eventTime">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelEvent">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
